@@ -19,6 +19,10 @@ export default function Signup() {
       });
 
       setMessage(response.data.message); // Show success message
+
+      // Alert the user that the signup was successful
+      alert('User successfully created!');
+
     } catch (error) {
       setMessage(error.response?.data?.message || 'Error signing up'); // Show error message
     }

@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const dotenv = require('dotenv');
+const bcrypt = require('bcrypt')
 const User = require('./db/userModel');  // Ensure this path is correct
 
 dotenv.config();  // Loads environment variables from the .env file
@@ -28,9 +29,18 @@ app.post("/users", async (req, res) => {
     try {
         console.log("Received data:", req.body);  // Log the incoming data
 
+        const existingUser = await User.findOne({ username: req.body.username})
+
+        if (existingUser) {
+            return res.status(400).json({message: "Username already taken"})
+        }
+
+        const hashedPassword = await bcrypt.hash(req.body.password, 10)
+
+
         // Create a new user from request data
         const { name, username, password } = req.body;
-        const user = new User({ name, username, password });
+        const user = new User({ name, username, password: hashedPassword });
         const result = await user.save();  // Save to MongoDB
         
         console.log("User created:", result);  // Log created user
@@ -50,6 +60,9 @@ app.post("/users", async (req, res) => {
 // GET /users - Get all users
 app.get("/users", async (req, res) => {
     try {
+       
+
+
         const users = await User.find();  // Fetch all users from MongoDB
         console.log("Users fetched:", users);  // Log fetched users
         res.json(users);  // Send users as JSON response
