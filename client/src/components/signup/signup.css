@@ -19,6 +19,9 @@ body {
     width: 300px;
     padding: 20px;
     border-radius: 20px ;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     
 
     
@@ -55,10 +58,28 @@ body {
     color: white;
     border: none;
     border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
 }
 .card a {
     text-decoration: none;
     color: dodgerblue;
     text-align: center;
+    font-size: 17px;
+}
+.links a:hover {
+    text-decoration: underline;
+}
+
+.links {
+    width: 100%;
+    display: flex;
+    font-size: 17px;
+    align-items: center;
+    justify-content: center;
+}
+.links h5 {
+    font-weight: 400;
 }
