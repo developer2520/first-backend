@@ -27,7 +27,7 @@ export default function Signup() {
     e.preventDefault();
     setLoading(true)
     try {
-      const response = await axios.post('http://localhost:4000/users', {
+      const response = await axios.post('https://first-backend-azsy.onrender.com/users', {
         name,
         username,
         password,

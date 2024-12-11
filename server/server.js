@@ -12,7 +12,7 @@ const app = express();
 
 // Middleware
 app.use(cors({
-    origin: 'http://localhost:5173', // Ensure this matches your frontend URL
+    origin: 'https://getajobhere.netlify.app/signin', // Ensure this matches your frontend URL
     methods: ['GET', 'POST'],
     allowedHeaders: ['Content-Type'],
 }));
