@@ -24,6 +24,7 @@ function Home() {
         username: decodedToken.username,
       });
       console.log(decodedToken)
+      setLoading(false)
     } catch (error) {
       setError('Invalid token');
       navigate('/signin');
