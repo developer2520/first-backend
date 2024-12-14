@@ -4,7 +4,8 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const User = require('./db/userModel'); // Ensure this path is correct
+const User = require('./db/userModel');
+const Vacancy = require('./db/vacancyModel') // Ensure this path is correct
 
 dotenv.config(); // Load environment variables from .env
 
@@ -54,6 +55,23 @@ app.post('/users', async (req, res) => {
     }
 });
 
+const profiles = [
+    { username: 'marcus', name: 'Marcus Aurelius', bio: 'Philosopher & Emperor' },
+    { username: 'julia', name: 'Julia Caesar', bio: 'Writer & Poet' },
+  ];
+
+  app.get("/:username", (erq, res) => {
+    const username = req.params
+    const user = profiles.find(profile => profile.username === username)
+
+    if (user) {
+        res.json(user);
+    }
+    else {
+        res.status(404).send("Profile not found")
+    }
+  })
+
 // Sign in an existing user
 app.post('/signin', async (req, res) => {
     try {
@@ -99,6 +117,42 @@ app.get('/users', async (req, res) => {
         });
     }
 });
+
+app.post('/jobs', async (req, res) => {
+    try {
+        const { title, description, salary, type } = req.body;
+
+        // Create a new vacancy
+        const vacancy = new Vacancy({ title, description, salary, type });
+
+        // Save the vacancy to the database
+        const result = await vacancy.save();
+
+        // Send a successful response
+        res.status(201).json({
+            message: 'Job vacancy created successfully',
+            vacancy: result,
+        });
+
+    } catch (err) {
+        // Handle errors and send an error response
+        res.status(500).json({
+            message: 'An error occurred while creating the vacancy',
+            error: err.message,
+        });
+    }
+});
+
+
+app.get('/jobs', async (req, res) => {
+    try {
+        const vacansies = Vacancy.find().
+        res.status(201).json(vacancies)
+    } catch {
+        console.error("Error")
+    }
+})
+
 
 // Start the server
 const PORT = process.env.PORT || 4000;
