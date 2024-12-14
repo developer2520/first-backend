@@ -33,6 +33,8 @@ export default function Profile() {
   return (
     <div style={{ textAlign: 'center', margin: '20px' }}>
       <h1>{profile.name}</h1>
+      <h2>{profile.username}</h2>
+      <h2>{profile.password}</h2>
       <img
         src={profile.profilePicture || 'https://via.placeholder.com/150'}
         alt="Profile"
