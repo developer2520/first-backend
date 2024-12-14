@@ -60,16 +60,22 @@ const profiles = [
     { username: 'julia', name: 'Julia Caesar', bio: 'Writer & Poet' },
   ];
 
-  app.get("/:username", (erq, res) => {
-    const username = req.params
-    const user = profiles.find(profile => profile.username === username)
+  app.get("/users/:username", (req, res) => {
+    try {
+        const {username} = req.params
+        const user = await User.findOne({username});
 
-    if (user) {
-        res.json(user);
+        if (!user) {
+            return.res.status(404)
+        }
+
+        res.json(user)
     }
-    else {
-        res.status(404).send("Profile not found")
+
+    catch (err) {
+        res.status(500)
     }
+     
   })
 
 // Sign in an existing user
