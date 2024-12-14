@@ -60,23 +60,25 @@ const profiles = [
     { username: 'julia', name: 'Julia Caesar', bio: 'Writer & Poet' },
   ];
 
-  app.get("/users/:username", (req, res) => {
+  app.get("/users/:username", async (req, res) => {
     try {
-        const {username} = req.params
-        const user = await User.findOne({username});
+        const { username } = req.params;
+        const user = await User.findOne({ username });
 
         if (!user) {
-            return.res.status(404)
+            return res.status(404).json({ message: 'User not found' });
         }
 
-        res.json(user)
+        res.json(user);
+    } catch (err) {
+        console.error('Error fetching user:', err);
+        res.status(500).json({
+            message: 'Internal Server Error - Failed to fetch user',
+            error: err.message,
+        });
     }
+});
 
-    catch (err) {
-        res.status(500)
-    }
-     
-  })
 
 // Sign in an existing user
 app.post('/signin', async (req, res) => {
