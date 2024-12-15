@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {jwtDecode} from 'jwt-decode'  // Corrected import
+import Sidebar from '../sidebar/sidebar'
 
 function Home() {
   const [users, setUsers] = useState([]);
@@ -67,6 +68,7 @@ function Home() {
 
   return (
     <div className="App">
+      <Sidebar />
       <h1>Hello, Welcome to Home Page!</h1>
       <button onClick={Logout}>Log Out</button>
 

@@ -6,6 +6,7 @@ import Home from './components/home/home';
 import LandingPage from './components/landingPage/landingPage'
 import Navbar from './components/navbar/navbar'
 import Profile from './components/profile/profile'
+import Sidebar from './components/sidebar/sidebar'
 
 function App() {
   const [count, setCount] = useState(0);
@@ -25,7 +26,8 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path='landing' element={<LandingPage />}/>
           <Route path=":username" Component={Profile} />
-        </Routes>
+          <Route path='/sidebar' Component={Sidebar} />  
+             </Routes>
       </BrowserRouter>
     </>
   );
