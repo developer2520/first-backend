@@ -30,7 +30,7 @@ function App() {
           <Route path=":username" Component={Profile} />
           <Route path='/sidebar' Component={Sidebar} />  
           <Route path='/mycards' Component={Mycard} />
-          <Route path='/account' Component={Account}
+          <Route path='/account' Component={Account} />
              </Routes>
       </BrowserRouter>
     </>
