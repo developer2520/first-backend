@@ -1,7 +1,18 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
+import './sidebar.css'
+import { jwtDecode } from 'jwt-decode'
 
 export default function sidebar() {
+
+
+
+    const token = localStorage.getItem('token')
+
+    const DecodedToken = jwtDecode(token)
+
+    const username = DecodedToken.username;
+    const name = DecodedToken.name;
   return (
     <div className='sidebar'>
         <div className="logo">
@@ -9,19 +20,19 @@ export default function sidebar() {
         </div>
         <div className="nav">
             <div className="link">
-                <Link>My Links</Link>
+                <Link to="/signin">My Cards</Link>
             </div>
             <div className="link">
-                <Link>My Links</Link>
+                <Link>Marketplace</Link>
             </div>
             <div className="link">
-                <Link>My Links</Link>
+                <Link>Analytics</Link>
             </div>
             <div className="link">
-                <Link>My Links</Link>
+                <Link>Settings</Link>
             </div>
             <div className="link">
-                <Link>My Links</Link>
+                <Link to='/account'>{username}</Link>
             </div>
         </div>
       

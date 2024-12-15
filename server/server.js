@@ -12,11 +12,26 @@ dotenv.config(); // Load environment variables from .env
 const app = express();
 
 // Middleware
+const allowedOrigins = [
+    'https://getajobhere.netlify.app', // Netlify frontend
+    'http://localhost:5173', // Localhost for development
+];
+
 app.use(cors({
-    origin: 'https://getajobhere.netlify.app', // Ensure this matches your frontend URL
-    methods: ['GET', 'POST'],
-    allowedHeaders: ['Content-Type'],
+    origin: (origin, callback) => {
+        if (!origin || allowedOrigins.includes(origin) || process.env.NODE_ENV === 'development') {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
+    methods: ['GET', 'POST', 'PUT','DELETE'], // Allowed HTTP methods
+    allowedHeaders: ['Content-Type'], // Allowed request headers
 }));
+
+app.options('*', cors());
+
+
 app.use(express.json());
 
 // MongoDB Connection

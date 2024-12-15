@@ -1,0 +1,17 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.sidebar {
+    background-color: white;
+    width: 200px;
+    height: 100vh;
+    position: sticky;
+    left: 0;
+    top: 0;
+}
+.sidebar .nav a {
+    text-decoration: none;
+}

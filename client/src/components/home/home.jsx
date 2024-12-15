@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {jwtDecode} from 'jwt-decode'  // Corrected import
 import Sidebar from '../sidebar/sidebar'
+import './home.css'
+import MyCard from './../pages/mycardPage/mycard'
 
 function Home() {
   const [users, setUsers] = useState([]);
@@ -28,28 +30,28 @@ function Home() {
       setLoading(false)
     } catch (error) {
       setError('Invalid token');
-      navigate('/signin');
+      // navigate('/signin');
     }
   }, [token, navigate]);
 
-  // useEffect(() => {
-  //   const getUsers = async () => {
-  //     try {
-  //       const response = await fetch('http://localhost:4000/users');
-  //       if (!response.ok) {
-  //         throw new Error('Failed to fetch users');
-  //       }
-  //       const data = await response.json();
-  //       setUsers(data);
-  //     } catch (error) {
-  //       setError(error.message);
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   };
+  useEffect(() => {
+    const getUsers = async () => {
+      try {
+        const response = await fetch('http://localhost:4000/users');
+        if (!response.ok) {
+          throw new Error('Failed to fetch users');
+        }
+        const data = await response.json();
+        setUsers(data);
+      } catch (error) {
+        setError(error.message);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  //   getUsers();
-  // }, [token, navigate]);
+    getUsers();
+  }, [token, navigate]);
 
   // If still loading
   if (loading) {
@@ -67,12 +69,10 @@ function Home() {
   };
 
   return (
-    <div className="App">
-      <Sidebar />
-      <h1>Hello, Welcome to Home Page!</h1>
-      <button onClick={Logout}>Log Out</button>
-
-      {user && <h1>{user.id}</h1>} {/* Check if user data exists before rendering */}
+    <div className="home-container">
+     <MyCard />
+      
+      
     </div>
   );
 }

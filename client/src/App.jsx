@@ -7,6 +7,8 @@ import LandingPage from './components/landingPage/landingPage'
 import Navbar from './components/navbar/navbar'
 import Profile from './components/profile/profile'
 import Sidebar from './components/sidebar/sidebar'
+import Mycard from './components/pages/mycardPage/mycard'
+import Account from './components/pages/account/account'
 
 function App() {
   const [count, setCount] = useState(0);
@@ -27,6 +29,8 @@ function App() {
           <Route path='landing' element={<LandingPage />}/>
           <Route path=":username" Component={Profile} />
           <Route path='/sidebar' Component={Sidebar} />  
+          <Route path='/mycards' Component={Mycard} />
+          <Route path='/account' Component={Account}
              </Routes>
       </BrowserRouter>
     </>
