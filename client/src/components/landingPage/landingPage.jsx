@@ -1,4 +1,4 @@
-import React from 'react'
+import {React, useEffect} from 'react'
 import Navbar from '../navbar/navbar'
 import {useNavigate} from 'react-router-dom'
 
@@ -13,7 +13,7 @@ export default function landingPage() {
     navigate('/home')
   }
 
-  })
+  },[])
 
   
   return (
