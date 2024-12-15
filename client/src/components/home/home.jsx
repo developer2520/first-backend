@@ -34,24 +34,24 @@ function Home() {
     }
   }, [token, navigate]);
 
-  useEffect(() => {
-    const getUsers = async () => {
-      try {
-        const response = await fetch('http://localhost:4000/users');
-        if (!response.ok) {
-          throw new Error('Failed to fetch users');
-        }
-        const data = await response.json();
-        setUsers(data);
-      } catch (error) {
-        setError(error.message);
-      } finally {
-        setLoading(false);
-      }
-    };
+  // useEffect(() => {
+  //   const getUsers = async () => {
+  //     try {
+  //       const response = await fetch('http://localhost:4000/users');
+  //       if (!response.ok) {
+  //         throw new Error('Failed to fetch users');
+  //       }
+  //       const data = await response.json();
+  //       setUsers(data);
+  //     } catch (error) {
+  //       setError(error.message);
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
 
-    getUsers();
-  }, [token, navigate]);
+  //   getUsers();
+  // }, [token, navigate]);
 
   // If still loading
   if (loading) {

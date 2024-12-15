@@ -4,9 +4,9 @@ import { jwtDecode } from 'jwt-decode'
 
 const token = localStorage.getItem('token')
 
-if (token) {
+
     const decodedToken = jwtDecode(token)
-}
+
 
 const username = decodedToken.username;
 const name = decodedToken.name
