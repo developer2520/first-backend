@@ -14,11 +14,7 @@ function Home() {
   const token = localStorage.getItem('token');
 
   useEffect(() => {
-    if (!token) {
-      setError('No token found, please log in again');
-      navigate('/signin');
-      return;  // Exit early if token is not found
-    }
+    
 
     try {
       const decodedToken = jwtDecode(token);  // Decode inside useEffect
@@ -32,7 +28,7 @@ function Home() {
       setError('Invalid token');
       // navigate('/signin');
     }
-  }, [token, navigate]);
+  }, []);
 
   // useEffect(() => {
   //   const getUsers = async () => {

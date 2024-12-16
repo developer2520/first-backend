@@ -9,6 +9,7 @@ import Profile from './components/profile/profile'
 import Sidebar from './components/sidebar/sidebar'
 import Mycard from './components/pages/mycardPage/mycard'
 import Account from './components/pages/account/account'
+import PrivateRoute from './../src/PrivateRoute';
 
 function App() {
   const [count, setCount] = useState(0);
@@ -25,12 +26,20 @@ function App() {
          
           <Route path="/signup" element={<Signup />} />
           <Route path="/signin" element={<Signin />} />
-          <Route path="/home" element={<Home />} />
+          <Route path="/home" element={<PrivateRoute>
+            <Home />
+          </PrivateRoute>} />
           <Route path='landing' element={<LandingPage />}/>
           <Route path=":username" Component={Profile} />
           <Route path='/sidebar' Component={Sidebar} />  
           <Route path='/mycards' Component={Mycard} />
-          <Route path='/account' Component={Account} />
+          <Route path='/account' element={<PrivateRoute>
+            <Account />
+          </PrivateRoute>} />
+            
+          
+
+
              </Routes>
       </BrowserRouter>
     </>
