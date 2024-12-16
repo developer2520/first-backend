@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Sidebar from './../../sidebar/sidebar';
-import {jwtDecode} from 'jwt-decode'; // Fix the import, no curly braces needed
+import jwtDecode from 'jwt-decode'; // Correct import
 import { useNavigate } from 'react-router-dom';
 import './account.css';
 
@@ -8,21 +8,29 @@ export default function Account() {
   const navigate = useNavigate();
 
   // Use state to track the token
-  const [token, setToken] = useState(localStorage.getItem('token'));
+  const [token, setToken] = useState(localStorage.getItem('token') || ''); // Ensure token is a string
 
-  // Decode the token if it exists
-  let username = '';
-  let name = '';
-  if (token) {
-    try {
-      const decodedToken = jwtDecode(token);
-      username = decodedToken.username;
-      name = decodedToken.name;
-    } catch (error) {
-      console.error('Invalid token:', error);
-      setToken(null); // If decoding fails, log out the user
+  // Decode the token if it exists and is valid
+  const [userDetails, setUserDetails] = useState({ username: '', name: '' });
+
+  useEffect(() => {
+    if (token) {
+      try {
+        const decodedToken = jwtDecode(token); // Decode the token
+        setUserDetails({
+          username: decodedToken.username || 'Unknown',
+          name: decodedToken.name || 'User',
+        });
+      } catch (error) {
+        console.error('Invalid token:', error);
+        setToken(''); // Reset token state if decoding fails
+        localStorage.removeItem('token'); // Clear invalid token from storage
+      }
+    } else {
+      // Redirect to signin if no token
+      navigate('/signin');
     }
-  }
+  }, [token, navigate]);
 
   // Logout function
   const Logout = () => {
@@ -30,20 +38,13 @@ export default function Account() {
     setToken(''); // Trigger state update and re-render
   };
 
-  // Redirect to signin if no token
-  useEffect(() => {
-    if (!token) {
-      navigate('/signin'); // Redirect to the signin page
-    }
-  }, [token, navigate]); // Effect runs whenever token changes
-
   return (
-    <div className='account-container'>
+    <div className="account-container">
       <Sidebar />
 
       <div className="main-account">
-        <h1>Welcome, {name || 'User'}!</h1>
-        <p>Username: {username || 'N/A'}</p>
+        <h1>Welcome, {userDetails.name}!</h1>
+        <p>Username: {userDetails.username}</p>
         <button onClick={Logout}>Logout</button>
       </div>
     </div>
