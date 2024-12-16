@@ -1,11 +1,14 @@
 import React from 'react'
 import Sidebar from './../../sidebar/sidebar'
 import { jwtDecode } from 'jwt-decode'
+import {useNavigate} from 'react-router-dom'
 import './account.css'
 
 
 
 export default function account() {
+
+  const navigate = useNavigate()
 
   const token = localStorage.getItem('token')
 
@@ -21,7 +24,9 @@ const Logout = () => {
   localStorage.removeItem('token')
 }
 
-
+if (!token) {
+  navigate('signin')
+}
 
 
 
