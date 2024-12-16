@@ -25,7 +25,7 @@ const Logout = () => {
 }
 
 if (!token) {
-  navigate('signin')
+  navigate('/signin')
 }
 
 
