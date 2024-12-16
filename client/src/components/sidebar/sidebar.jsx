@@ -32,7 +32,7 @@ export default function sidebar() {
                 <Link>Settings</Link>
             </div>
             <div className="link">
-                <Link to='/account'>{username}</Link>
+                <Link to='/account'>Account</Link>
             </div>
         </div>
       

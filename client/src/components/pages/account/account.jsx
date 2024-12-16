@@ -2,23 +2,35 @@ import React from 'react'
 import Sidebar from './../../sidebar/sidebar'
 import { jwtDecode } from 'jwt-decode'
 
-const token = localStorage.getItem('token')
+
+
+export default function account() {
+
+  const token = localStorage.getItem('token')
 
 
     const decodedToken = jwtDecode(token)
 
 
 const username = decodedToken.username;
-const name = decodedToken.name
+const name = decodedToken.name;
 
 
-export default function account() {
+const Logout = () => {
+  localStorage.removeItem('token')
+}
+
+
+
+
+
   return (
     <div className='account-container'>
         <Sidebar />
 
         <div className="main-account">
-            <h1>{name}</h1>
+            <h1>This is your account</h1>
+            <button onClick={Logout}>Logout</button>
         </div>
 
       
