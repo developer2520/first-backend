@@ -59,10 +59,10 @@ function Home() {
     return <div>Error: {error}</div>;
   }
 
-  const Logout = () => {
-    localStorage.removeItem('token');
-    navigate('/signin');  // Redirect to signin after logout
-  };
+  // const Logout = () => {
+  //   localStorage.removeItem('token');
+  //   navigate('/signin');  // Redirect to signin after logout
+  // };
 
   return (
     <div className="home-container">

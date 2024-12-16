@@ -23,10 +23,13 @@ const name = decodedToken.name;
 const Logout = () => {
   localStorage.removeItem('token')
 }
+useEffect(() => {
+  if (!token) {
+    navigate('/signin')
+  }
+  
 
-if (!token) {
-  navigate('/signin')
-}
+})
 
 
 
