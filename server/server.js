@@ -141,30 +141,6 @@ app.get('/users', async (req, res) => {
     }
 });
 
-app.post('/jobs', async (req, res) => {
-    try {
-        const { title, description, salary, type } = req.body;
-
-        // Create a new vacancy
-        const vacancy = new Vacancy({ title, description, salary, type });
-
-        // Save the vacancy to the database
-        const result = await vacancy.save();
-
-        // Send a successful response
-        res.status(201).json({
-            message: 'Job vacancy created successfully',
-            vacancy: result,
-        });
-
-    } catch (err) {
-        // Handle errors and send an error response
-        res.status(500).json({
-            message: 'An error occurred while creating the vacancy',
-            error: err.message,
-        });
-    }
-});
 
 
 app.get('/jobs', async (req, res) => {
