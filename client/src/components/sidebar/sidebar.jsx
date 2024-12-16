@@ -20,7 +20,7 @@ export default function sidebar() {
         </div>
         <div className="nav">
             <div className="link">
-                <Link to="/signin">My Cards</Link>
+                <Link to="/home">My Cards</Link>
             </div>
             <div className="link">
                 <Link>Marketplace</Link>
