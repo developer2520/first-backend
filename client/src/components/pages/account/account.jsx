@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Sidebar from './../../sidebar/sidebar';
-import jwtDecode from 'jwt-decode'; // Fix the import, no curly braces needed
+import {jwtDecode} from 'jwt-decode'; // Fix the import, no curly braces needed
 import { useNavigate } from 'react-router-dom';
 import './account.css';
 
