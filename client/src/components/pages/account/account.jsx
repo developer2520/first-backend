@@ -1,6 +1,7 @@
 import React from 'react'
 import Sidebar from './../../sidebar/sidebar'
 import { jwtDecode } from 'jwt-decode'
+import './account.css'
 
 
 
