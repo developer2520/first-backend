@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Sidebar from './../../sidebar/sidebar';
-import jwtDecode from 'jwt-decode'; // Correct import
+import {jwtDecode} from 'jwt-decode'; // Correct import
 import { useNavigate } from 'react-router-dom';
 import './account.css';
 
