@@ -27,7 +27,7 @@ export default function Account() {
   // Logout function
   const Logout = () => {
     localStorage.removeItem('token');
-    setToken(null); // Trigger state update and re-render
+    setToken(''); // Trigger state update and re-render
   };
 
   // Redirect to signin if no token
