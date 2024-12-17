@@ -35,7 +35,7 @@ export default function Account() {
   // Logout function
   const Logout = () => {
     localStorage.removeItem('token');
-     // Trigger state update and re-render
+    setToken(''); // Trigger state update and re-render
   };
 
   return (

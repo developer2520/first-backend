@@ -70,10 +70,6 @@ app.post('/users', async (req, res) => {
     }
 });
 
-const profiles = [
-    { username: 'marcus', name: 'Marcus Aurelius', bio: 'Philosopher & Emperor' },
-    { username: 'julia', name: 'Julia Caesar', bio: 'Writer & Poet' },
-  ];
 
   app.get("/users/:username", async (req, res) => {
     try {
@@ -142,15 +138,6 @@ app.get('/users', async (req, res) => {
 });
 
 
-
-app.get('/jobs', async (req, res) => {
-    try {
-        const vacansies = Vacancy.find().
-        res.status(201).json(vacancies)
-    } catch {
-        console.error("Error")
-    }
-})
 
 
 // Start the server
